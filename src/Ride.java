@@ -1,6 +1,9 @@
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Iterator;
+import java.util.Collections;
+import java.util.Comparator;
+
 
 // Amusement facilities: including basic information of facilities, height limit, operator association
 public class Ride implements RideInterface {
@@ -185,6 +188,16 @@ public class Ride implements RideInterface {
         }
         System.out.printf("Total unique visitors: %d%n=========================%n", this.numberOfVisitors());
     }
+
+    public void sortRideHistory(Comparator<Visitor> comp) {
+        if (rideHistory.isEmpty()) {
+            System.out.println("[Sort] No visitors in history to sort.");
+            return;
+        }
+        Collections.sort(rideHistory, comp);
+        System.out.println("[Sort] Ride history sorted successfully.");
+    }
+
     /**
      * Run one cycle of the ride
      * Each round can process maxRider legal tourists at most, and numOfCycles after processing++
