@@ -4,6 +4,7 @@ public class AssignmentTwo {
         AssignmentTwo a2 = new AssignmentTwo();
         a2.partThree();
         a2.partFourA();
+        a2.partFourB();
     }
 
     public void partThree() {
@@ -68,7 +69,38 @@ public class AssignmentTwo {
         System.out.println("Number of visitors in history: " + ride.numberOfVisitors());
     }
 
-    public void partFourB() { }
+    public void partFourB() {
+        System.out.println("\n=== Part 4B: Sort Ride History Demo ===");
+
+        // 1.Create an operator and a ride
+        Employee op = new Employee(3, "Daisy", 32, "Ride Operator", 26.0);
+        Ride ride = new Ride("Haunted House", 130, op);
+
+        // 2.Create visitors with different membership types and heights
+        Visitor v1 = new Visitor(001, "A", 20, "Standard", 165.0);
+        Visitor v2 = new Visitor(002, "B", 22, "VIP",      160.0);
+        Visitor v3 = new Visitor(003, "C", 24, "Standard", 170.0);
+        Visitor v4 = new Visitor(004, "D", 21, "VIP",      150.0);
+        Visitor v5 = new Visitor(005, "E", 23, "Standard", 180.0);
+
+        // 3.Add history
+        ride.addVisitorToHistory(v1);
+        ride.addVisitorToHistory(v2);
+        ride.addVisitorToHistory(v3);
+        ride.addVisitorToHistory(v4);
+        ride.addVisitorToHistory(v5);
+
+        System.out.println("\n----- Before sorting Ride History -----");
+        ride.printRideHistory();
+
+        // 4. 使用 VisitorComparator 排序
+        VisitorComparator comp = new VisitorComparator();
+        ride.sortRideHistory(comp);
+
+        System.out.println("\n----- Sorted Ride History -----");
+        ride.printRideHistory();
+    }
+
     public void partFive() { }
     public void partSix() { }
     public void partSeven() { }
