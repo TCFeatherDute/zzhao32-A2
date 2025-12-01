@@ -7,6 +7,7 @@ public class AssignmentTwo {
         a2.partFourB();
         a2.partFive();
         a2.partSix();
+        a2.partSeven();
     }
 
     public void partThree() {
@@ -155,7 +156,7 @@ public class AssignmentTwo {
         Employee op = new Employee(10, "Dwight", 30, "Ride Operator", 30.0);
         Ride ride = new Ride("Roller Coaster", 140, op);
 
-        //2. Create 5 Visitors and add them to the history
+        //2.Create 5 Visitors and add them to the history
         Visitor h1 = new Visitor(001, "Xiaolao", 20, "Standard", 160.0);
         Visitor h2 = new Visitor(002, "Xiaozhao", 21, "VIP", 170.0);
         Visitor h3 = new Visitor(003, "Xiaolu", 22, "Standard", 165.0);
@@ -168,16 +169,35 @@ public class AssignmentTwo {
         ride.addVisitorToHistory(h4);
         ride.addVisitorToHistory(h5);
 
-        //3. Print the current history record (optional for easy debugging)
+        //3.Print the current history record (optional for easy debugging)
         System.out.println("\n----- Ride History before export -----");
         ride.printRideHistory();
 
-        //4. Export to file
+        //4.Export to file
         String fileName = "ride_history_part6.csv";
         ride.exportRideHistory(fileName);
 
         System.out.printf(">>> Please check the generated file: %s%n", fileName);
     }
 
-    public void partSeven() { }
+    public void partSeven() {
+        System.out.println("\n=== Part 7: Import Ride History from File ===");
+
+        //1.Create a new ride
+        Employee op = new Employee(99, "Importer", 35, "Ride Operator", 28.0);
+        Ride ride = new Ride("Imported Ride", 140, op);
+
+        //2.Specify the file name to import (consistent with the exported file in Part 6)
+        String fileName = "ride_history_part6.csv";
+
+        //3.Call importRideHistory to read the file and fill in LinkedList
+        ride.importRideHistory(fileName);
+
+        // 4.Print
+        int count = ride.numberOfVisitors();
+        System.out.printf("Number of visitors imported into LinkedList: %d%n", count);
+
+        System.out.println("\n----- Imported Ride History -----");
+        ride.printRideHistory();
+    }
 }
