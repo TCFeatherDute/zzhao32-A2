@@ -6,6 +6,10 @@ import java.util.Comparator;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+
 
 
 
@@ -239,6 +243,72 @@ public class Ride implements RideInterface {
             }
         }
     }
+
+    /**
+     * Part 7 - Import ride history from a CSV file.
+     * Expected CSV format (same as Part 6 export):
+     *   id,name,age,membershipType,height
+     */
+    public void importRideHistory(String fileName) {
+        BufferedReader reader = null;
+        int importedCount = 0;
+
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
+
+            String line;
+
+            //1. Read the header (assuming the first line is header)
+            line = reader.readLine(); // header line, e.g. "id,name,age,membershipType,height"
+
+            //2. Read Visitor data line by line
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty()) {
+                    continue;
+                }
+
+                String[] tokens = line.split(",");
+                if (tokens.length < 5) {
+                    System.out.printf("[Import] Invalid line (not enough fields): %s%n", line);
+                    continue;
+                }
+
+                try {
+                    int id = Integer.parseInt(tokens[0].trim());
+                    String name = tokens[1].trim();
+                    int age = Integer.parseInt(tokens[2].trim());
+                    String membershipType = tokens[3].trim();
+                    double height = Double.parseDouble(tokens[4].trim());
+                    Visitor v = new Visitor(id, name, age, membershipType, height);
+            //Join LinkedIn List: Reuse existing addVisitorToHistory
+                    this.addVisitorToHistory(v);
+                    importedCount++;
+                } catch (NumberFormatException e) {
+                    System.out.printf("[Import] Number format error in line: %s (%s)%n",
+                            line, e.getMessage());
+                }
+            }
+
+            System.out.printf("[Import] Import finished. Total records read: %d%n", importedCount);
+
+        } catch (FileNotFoundException e) {
+            System.out.printf("[Error] File not found: %s%n", fileName);
+        } catch (IOException e) {
+            System.out.printf("[Error] IO error while reading file %s: %s%n",
+                    fileName, e.getMessage());
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    System.out.printf("[Error] Failed to close reader for file %s: %s%n",
+                            fileName, e.getMessage());
+                }
+            }
+        }
+    }
+
 
     /**
      * Run one cycle of the ride
