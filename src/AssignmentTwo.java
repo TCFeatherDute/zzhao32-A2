@@ -5,6 +5,7 @@ public class AssignmentTwo {
         a2.partThree();
         a2.partFourA();
         a2.partFourB();
+        a2.partFive();
     }
 
     public void partThree() {
@@ -101,7 +102,50 @@ public class AssignmentTwo {
         ride.printRideHistory();
     }
 
-    public void partFive() { }
+    public void partFive() {
+        System.out.println("\n=== Part 5: runOneCycle Demo ===");
+
+        // 1.Create operators and amusement facilities
+        Employee op = new Employee(4, "Charlie", 28, "Ride Operator", 28.0);
+        Ride ride = new Ride("Drop Tower", 140, op);
+
+        // 2. Create multiple tourists who meet the height requirements
+        Visitor v1 = new Visitor(001, "V1", 18, "Standard", 150.0);
+        Visitor v2 = new Visitor(002, "V2", 19, "Standard", 155.0);
+        Visitor v3 = new Visitor(003, "V3", 20, "Standard", 160.0);
+        Visitor v4 = new Visitor(004, "V4", 21, "Standard", 165.0);
+        Visitor v5 = new Visitor(005, "V5", 22, "Standard", 170.0);
+        Visitor v6 = new Visitor(006, "V6", 23, "Standard", 175.0);
+        Visitor v7 = new Visitor(007, "V7", 24, "Standard", 180.0);
+
+        // 3. Add all tourists to the queue
+        ride.addVisitorToQueue(v1);
+        ride.addVisitorToQueue(v2);
+        ride.addVisitorToQueue(v3);
+        ride.addVisitorToQueue(v4);
+        ride.addVisitorToQueue(v5);
+        ride.addVisitorToQueue(v6);
+        ride.addVisitorToQueue(v7);
+
+        System.out.println("\n----- Initial Queue -----");
+        ride.printQueue();
+
+        // 4.Run one round for the first time
+        ride.runOneCycle();
+
+        System.out.println("----- Queue after first cycle -----");
+        ride.printQueue();
+
+        // 5.Run one round for the second time (run the remaining queue)
+        ride.runOneCycle();
+
+        System.out.println("----- Queue after second cycle -----");
+        ride.printQueue();
+
+        // 6.Print the final historical record
+        System.out.println("\n----- Final Ride History -----");
+        ride.printRideHistory();
+    }
     public void partSix() { }
     public void partSeven() { }
 }
