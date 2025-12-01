@@ -10,9 +10,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 
-
-
-
 // Amusement facilities: including basic information of facilities, height limit, operator association
 public class Ride implements RideInterface {
     // Private attributes: facility name, minimum height limit, operator
