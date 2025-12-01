@@ -3,6 +3,7 @@ public class AssignmentTwo {
     public static void main(String[] args) {
         AssignmentTwo a2 = new AssignmentTwo();
         a2.partThree();
+        a2.partFourA();
     }
 
     public void partThree() {
@@ -41,7 +42,32 @@ public class AssignmentTwo {
         ride.printQueue();
     }
 
-    public void partFourA() { }
+    public void partFourA() {
+        System.out.println("\n=== Part 4A: Ride History Demo ===");
+
+        // 1.Create an operator and a Ride
+        Employee op = new Employee(2, "Bob", 35, "Ride Operator", 30.0);
+        Ride ride = new Ride("Ferris Wheel", 120, op);
+
+        // 2.Create three Visitors, two of which have the same ID, to test duplication removal
+        Visitor v1 = new Visitor(201, "Anna", 22, "Standard", 160.0);
+        Visitor v2 = new Visitor(202, "Ben", 25, "VIP",      170.0);
+        Visitor v3 = new Visitor(201, "Anna-dup", 22, "Standard", 160.0); // 故意和 v1 同 ID
+
+        // 3.Add History
+        ride.addVisitorToHistory(v1);
+        ride.addVisitorToHistory(v2);
+        ride.addVisitorToHistory(v3);
+
+        // 4.print
+        System.out.println("\n----- Ride History -----");
+        ride.printRideHistory();
+
+        // 5.Test inspection and statistics
+        System.out.println("Check Anna in history: " + ride.checkVisitorFromHistory(v1));
+        System.out.println("Number of visitors in history: " + ride.numberOfVisitors());
+    }
+
     public void partFourB() { }
     public void partFive() { }
     public void partSix() { }
