@@ -3,6 +3,10 @@ import java.util.Queue;
 import java.util.Iterator;
 import java.util.Collections;
 import java.util.Comparator;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 
 
 // Amusement facilities: including basic information of facilities, height limit, operator association
@@ -196,6 +200,44 @@ public class Ride implements RideInterface {
         }
         Collections.sort(rideHistory, comp);
         System.out.println("[Sort] Ride history sorted successfully.");
+    }
+    /**
+     * Part 6 - Export ride history to a CSV file.
+     * Each line format:
+     * id,name,age,membershipType,height
+     */
+    public void exportRideHistory(String fileName) {
+        //If the historical record is empty, a prompt can be given, or an empty file can still be generated
+        if (rideHistory.isEmpty()) {
+            System.out.println("[File] No visitors in history. Nothing to export.");
+            return;
+        }
+
+        PrintWriter writer = null;
+        try {
+            //Write line by line using FileWriter+PrintWriter
+            writer = new PrintWriter(new FileWriter(fileName));
+            //Optional: Write into header
+            writer.println("id,name,age,membershipType,height");
+            //Write one line for each visitor
+            for (Visitor v : rideHistory) {
+                writer.printf("%d,%s,%d,%s,%.2f%n",
+                        v.getId(),
+                        v.getName(),
+                        v.getAge(),
+                        v.getMembershipType(),
+                        v.getHeight());
+            }
+
+            System.out.printf("[File] Ride history exported to file: %s%n", fileName);
+        } catch (IOException e) {
+            System.out.printf("[Error] Failed to export ride history to file %s: %s%n",
+                    fileName, e.getMessage());
+        } finally {
+            if (writer != null) {
+                writer.close();
+            }
+        }
     }
 
     /**
