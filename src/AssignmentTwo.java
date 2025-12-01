@@ -6,6 +6,7 @@ public class AssignmentTwo {
         a2.partFourA();
         a2.partFourB();
         a2.partFive();
+        a2.partSix();
     }
 
     public void partThree() {
@@ -146,6 +147,37 @@ public class AssignmentTwo {
         System.out.println("\n----- Final Ride History -----");
         ride.printRideHistory();
     }
-    public void partSix() { }
+
+    public void partSix() {
+        System.out.println("\n=== Part 6: Export Ride History to File ===");
+
+        //1.Create Operators and Rides
+        Employee op = new Employee(10, "Dwight", 30, "Ride Operator", 30.0);
+        Ride ride = new Ride("Roller Coaster", 140, op);
+
+        //2. Create 5 Visitors and add them to the history
+        Visitor h1 = new Visitor(001, "Xiaolao", 20, "Standard", 160.0);
+        Visitor h2 = new Visitor(002, "Xiaozhao", 21, "VIP", 170.0);
+        Visitor h3 = new Visitor(003, "Xiaolu", 22, "Standard", 165.0);
+        Visitor h4 = new Visitor(004, "Xiaobai", 23, "VIP", 175.0);
+        Visitor h5 = new Visitor(005, "Xiaohong", 24, "Standard", 180.0);
+
+        ride.addVisitorToHistory(h1);
+        ride.addVisitorToHistory(h2);
+        ride.addVisitorToHistory(h3);
+        ride.addVisitorToHistory(h4);
+        ride.addVisitorToHistory(h5);
+
+        //3. Print the current history record (optional for easy debugging)
+        System.out.println("\n----- Ride History before export -----");
+        ride.printRideHistory();
+
+        //4. Export to file
+        String fileName = "ride_history_part6.csv";
+        ride.exportRideHistory(fileName);
+
+        System.out.printf(">>> Please check the generated file: %s%n", fileName);
+    }
+
     public void partSeven() { }
 }
