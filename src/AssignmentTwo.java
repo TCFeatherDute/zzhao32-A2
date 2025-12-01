@@ -80,11 +80,11 @@ public class AssignmentTwo {
         Ride ride = new Ride("Haunted House", 130, op);
 
         // 2.Create visitors with different membership types and heights
-        Visitor v1 = new Visitor(001, "A", 20, "Standard", 165.0);
-        Visitor v2 = new Visitor(002, "B", 22, "VIP",      160.0);
-        Visitor v3 = new Visitor(003, "C", 24, "Standard", 170.0);
-        Visitor v4 = new Visitor(004, "D", 21, "VIP",      150.0);
-        Visitor v5 = new Visitor(005, "E", 23, "Standard", 180.0);
+        Visitor v1 = new Visitor(1, "A", 20, "Standard", 165.0);
+        Visitor v2 = new Visitor(2, "B", 22, "VIP",      160.0);
+        Visitor v3 = new Visitor(3, "C", 24, "Standard", 170.0);
+        Visitor v4 = new Visitor(4, "D", 21, "VIP",      150.0);
+        Visitor v5 = new Visitor(5, "E", 23, "Standard", 180.0);
 
         // 3.Add history
         ride.addVisitorToHistory(v1);
@@ -112,13 +112,13 @@ public class AssignmentTwo {
         Ride ride = new Ride("Drop Tower", 140, op);
 
         // 2. Create multiple tourists who meet the height requirements
-        Visitor v1 = new Visitor(001, "V1", 18, "Standard", 150.0);
-        Visitor v2 = new Visitor(002, "V2", 19, "Standard", 155.0);
-        Visitor v3 = new Visitor(003, "V3", 20, "Standard", 160.0);
-        Visitor v4 = new Visitor(004, "V4", 21, "Standard", 165.0);
-        Visitor v5 = new Visitor(005, "V5", 22, "Standard", 170.0);
-        Visitor v6 = new Visitor(006, "V6", 23, "Standard", 175.0);
-        Visitor v7 = new Visitor(007, "V7", 24, "Standard", 180.0);
+        Visitor v1 = new Visitor(1, "V1", 18, "Standard", 150.0);
+        Visitor v2 = new Visitor(2, "V2", 19, "Standard", 155.0);
+        Visitor v3 = new Visitor(3, "V3", 20, "Standard", 160.0);
+        Visitor v4 = new Visitor(4, "V4", 21, "Standard", 165.0);
+        Visitor v5 = new Visitor(5, "V5", 22, "Standard", 170.0);
+        Visitor v6 = new Visitor(6, "V6", 23, "Standard", 175.0);
+        Visitor v7 = new Visitor(7, "V7", 24, "Standard", 180.0);
 
         // 3. Add all tourists to the queue
         ride.addVisitorToQueue(v1);
@@ -157,11 +157,11 @@ public class AssignmentTwo {
         Ride ride = new Ride("Roller Coaster", 140, op);
 
         //2.Create 5 Visitors and add them to the history
-        Visitor h1 = new Visitor(001, "Xiaolao", 20, "Standard", 160.0);
-        Visitor h2 = new Visitor(002, "Xiaozhao", 21, "VIP", 170.0);
-        Visitor h3 = new Visitor(003, "Xiaolu", 22, "Standard", 165.0);
-        Visitor h4 = new Visitor(004, "Xiaobai", 23, "VIP", 175.0);
-        Visitor h5 = new Visitor(005, "Xiaohong", 24, "Standard", 180.0);
+        Visitor h1 = new Visitor(1, "Xiaolao", 20, "Standard", 160.0);
+        Visitor h2 = new Visitor(2, "Xiaozhao", 21, "VIP", 170.0);
+        Visitor h3 = new Visitor(3, "Xiaolu", 22, "Standard", 165.0);
+        Visitor h4 = new Visitor(4, "Xiaobai", 23, "VIP", 175.0);
+        Visitor h5 = new Visitor(5, "Xiaohong", 24, "Standard", 180.0);
 
         ride.addVisitorToHistory(h1);
         ride.addVisitorToHistory(h2);
