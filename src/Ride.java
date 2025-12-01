@@ -12,6 +12,8 @@ public class Ride implements RideInterface {
     //===========Queue/history storage (interface method dependency)==========
     private Queue<Visitor> rideQueue = new LinkedList<>();    // Visitor queue (FIFO)
     private LinkedList<Visitor> rideHistory = new LinkedList<>();    // Ride history records
+    private int maxRider = 4;
+    private int numOfCycles = 0;
 
     // Parameterless constructor
     // Set Default
@@ -61,7 +63,7 @@ public class Ride implements RideInterface {
 
     //==========Implement all methods of the RideInterface interface==========
     /**
-     * Add visitor to queue (Part 3)
+     * Add visitor to queue
      * Check height limit before adding
      */
     @Override
@@ -82,7 +84,7 @@ public class Ride implements RideInterface {
     }
 
     /**
-     * Remove visitor from queue (Part 3)
+     * Remove visitor from queue
      * Remove the first visitor in the queue by default
      */
     @Override
@@ -97,7 +99,7 @@ public class Ride implements RideInterface {
     }
 
     /**
-     * Print queue details (Part 3)
+     * Print queue details
      */
     @Override
     public void printQueue() {
@@ -115,7 +117,7 @@ public class Ride implements RideInterface {
     }
 
     /**
-     * Add visitor to ride history (Part 4A/4B)
+     * Add visitor to ride history
      * Avoid duplicate records by visitor ID
      */
     @Override
@@ -183,36 +185,31 @@ public class Ride implements RideInterface {
         }
         System.out.printf("Total unique visitors: %d%n=========================%n", this.numberOfVisitors());
     }
-
     /**
-     * Run one cycle of the ride (Part 5)
-     * Process all valid visitors in queue → add to history → clear queue
+     * Run one cycle of the ride
+     * Each round can process maxRider legal tourists at most, and numOfCycles after processing++
      */
-
     @Override
     public void runOneCycle() {
-        System.out.printf("\n===== %s Starting One Cycle =====%n", this.rideName);
+        System.out.printf("\n===== %s Starting Cycle #%d =====%n", this.rideName, this.numOfCycles + 1);
 
-        // Check if operator exists
         if (this.operator == null) {
             System.out.println("Warning: No operator assigned, cycle terminated!");
+            System.out.printf("=========================%n");
             return;
         }
         System.out.printf("Operator: %s (Position: %s)%n",
                 this.operator.getName(), this.operator.getPosition());
 
-        // Check if queue is empty
         if (rideQueue.isEmpty()) {
             System.out.println("No visitors in queue, cycle ended");
             System.out.printf("=========================%n");
             return;
         }
 
-        // Process visitors in queue
         int processedCount = 0;
-        while (!rideQueue.isEmpty()) {
+        while (!rideQueue.isEmpty() && processedCount < maxRider) {
             Visitor currentVisitor = rideQueue.poll();
-            // Re-check height (prevent data tampering)
             if (currentVisitor.getHeight() >= this.minHeight) {
                 this.addVisitorToHistory(currentVisitor);
                 processedCount++;
@@ -222,8 +219,12 @@ public class Ride implements RideInterface {
             }
         }
 
-        // Print cycle result
-        System.out.printf("Cycle completed. Total visitors processed: %d%n", processedCount);
+        this.numOfCycles++;
+
+        System.out.printf("Cycle #%d completed. Visitors processed this cycle: %d%n",
+                this.numOfCycles, processedCount);
+        System.out.printf("Total visitors in history: %d%n", this.numberOfVisitors());
         System.out.printf("=========================%n");
     }
+
 }
